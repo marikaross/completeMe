@@ -37,24 +37,22 @@ describe('Trie', () => {
   expect(Object.keys(trie.root.children)[0]).to.equal('d');
   });
 
-  it.skip('should insert a new word', () => {
+  it('should insert a new word', () => {
     let data = 'dog'
 
     trie.insert(data);
-    // console.log(Object.keys(trie.root.children)[0].Object.keys(children[0])
-  // expect(trie.root.children.children[].children.completedWord).to.equal('dog');
+
   expect(trie.count).to.equal(1)
   })
 
-  it.skip('should insert multiple words', () => {
+  it('should insert multiple words', () => {
     let data1 = 'platypus';
     let data2 = 'dog'
 
     trie.insert(data1)
     trie.insert(data2)
 
-    expect(trie.root.children.children).to.equal('platypus')
-    expect(trie.root.children.children).to.equal('dog')
+    expect(trie.count).to.equal(2)
   })
 
 })
