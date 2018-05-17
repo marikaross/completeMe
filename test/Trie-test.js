@@ -37,16 +37,16 @@ describe('Trie', () => {
   expect(Object.keys(trie.root.children)[0]).to.equal('d');
   });
 
-  it.only('should insert a new word', () => {
+  it.skip('should insert a new word', () => {
     let data = 'dog'
 
     trie.insert(data);
-    console.log(Object.keys((trie.root.children)[0])
+    // console.log(Object.keys(trie.root.children)[0].Object.keys(children[0])
   // expect(trie.root.children.children[].children.completedWord).to.equal('dog');
   expect(trie.count).to.equal(1)
   })
 
-  it('should insert multiple words', () => {
+  it.skip('should insert multiple words', () => {
     let data1 = 'platypus';
     let data2 = 'dog'
 
@@ -58,8 +58,6 @@ describe('Trie', () => {
   })
 
 })
-
- 
 
   describe('suggest', () => {
 
@@ -79,7 +77,7 @@ describe('Trie', () => {
       trie.insert('double');
       trie.insert('door');
       let actualArray = trie.suggest('d');
-      console.log(JSON.stringify(trie, null, 4))
+      // console.log(JSON.stringify(trie, null, 4))
       expect(expectedArray).to.deep.equal(actualArray);
     })
 
@@ -91,11 +89,14 @@ describe('Trie', () => {
       trie.insert('door');
       trie.insert('');
       trie.insert('carrot');
+
       let actualArray = trie.suggest('d');
-       console.log(JSON.stringify(trie, null, 4))
+      // console.log(JSON.stringify(trie, null, 4))
       expect(expectedArray).to.deep.equal(actualArray);
 
     })
+
+
 
   })
 
