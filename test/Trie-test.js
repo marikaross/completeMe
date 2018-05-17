@@ -10,36 +10,67 @@ describe('Trie', () => {
   });
 
     it('should instantiate a new trie', () => {
-
+      expect(trie).to.deep.equal(new Trie);
     })
 
     it('should have a root node', () => {
     expect(trie.root).to.deep.equal(new Node());
     });
   
+  describe('count', () => {
+    it('should count each new word that enters the trie', () => {
+      let data1 = 'dog';
+      let data2 = 'banana';
+      trie.insert(data1)
+      trie.insert(data2)
+    expect(trie.count).to.equal(2)
+    })
+  })
+
   describe('insert', () => {
 
   it('should be able to add a node to the Trie', () => {
-        trie.insert('dog');
-        trie.insert('dogs');
-        trie.insert('doggie');
+    let data = 'dog'
 
-      expect(Object.keys(trie.root.children)[0]).to.equal('d');
-      });
+    trie.insert(data);
 
-  it('should insert a new word', () => {
-    //setup
+  expect(Object.keys(trie.root.children)[0]).to.equal('d');
+  });
 
-    //execution
-    
-    //expect
+  it.only('should insert a new word', () => {
+    let data = 'dog'
+
+    trie.insert(data);
+    console.log(Object.keys((trie.root.children)[0])
+  // expect(trie.root.children.children[].children.completedWord).to.equal('dog');
+  expect(trie.count).to.equal(1)
   })
 
   it('should insert multiple words', () => {
+    let data1 = 'platypus';
+    let data2 = 'dog'
 
+    trie.insert(data1)
+    trie.insert(data2)
+
+    expect(trie.root.children.children).to.equal('platypus')
+    expect(trie.root.children.children).to.equal('dog')
   })
 
+})
+
+ 
+
   describe('suggest', () => {
+
+    it('should return an empty array when trie is empty', () => {
+      let expectedArray = []
+
+      let actualArray = trie.suggest('')
+
+      expect(expectedArray).to.deep.equal(actualArray)
+    })
+
     it('should return an array', () => {
       
       let expectedArray = ['dog', 'double', 'door'];
@@ -48,7 +79,6 @@ describe('Trie', () => {
       trie.insert('double');
       trie.insert('door');
       let actualArray = trie.suggest('d');
-      
       console.log(JSON.stringify(trie, null, 4))
       expect(expectedArray).to.deep.equal(actualArray);
     })
@@ -59,10 +89,12 @@ describe('Trie', () => {
       trie.insert('dog');
       trie.insert('double');
       trie.insert('door');
+      trie.insert('');
       trie.insert('carrot');
       let actualArray = trie.suggest('d');
-
+       console.log(JSON.stringify(trie, null, 4))
       expect(expectedArray).to.deep.equal(actualArray);
+
     })
 
   })
