@@ -35,6 +35,10 @@ describe('Trie', () => {
     trie.insert(data);
 
   expect(Object.keys(trie.root.children)[0]).to.equal('d');
+ 
+  expect(trie.root.children.d.children.o.letter).to.equal('o');
+  expect(trie.root.children.d.children.o.children.g.letter).to.equal('g');
+  expect(trie.root.children.d.children.o.children.g.completedWord).to.equal('dog');
   });
 
   it('should insert a new word', () => {
@@ -74,6 +78,7 @@ describe('Trie', () => {
       trie.insert('dog');
       trie.insert('double');
       trie.insert('door');
+      trie.insert('park');
       let actualArray = trie.suggest('d');
       // console.log(JSON.stringify(trie, null, 4))
       expect(expectedArray).to.deep.equal(actualArray);
@@ -92,6 +97,29 @@ describe('Trie', () => {
       // console.log(JSON.stringify(trie, null, 4))
       expect(expectedArray).to.deep.equal(actualArray);
 
+    })
+
+    it('should enter repeat words into the trie', () => {
+      let expectedArray = ['dog', 'door'];
+
+      trie.insert('dog');
+      trie.insert('door');
+      trie.insert('dog');
+
+      let actualArray = trie.suggest('d');
+
+      expect(expectedArray).to.deep.equal(actualArray);
+    } )
+
+    it.only('should return nothing when you enter a word that is not in the trie', () => {
+      let expectedArray = []
+
+      trie.insert('carrot');
+      trie.insert('cat');
+      trie.insert('cake');
+
+      let actualArray = trie.suggest('d');
+      expect(expectedArray).to.deep.equal(actualArray);
     })
 
 

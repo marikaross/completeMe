@@ -12,7 +12,7 @@ describe('Node', () => {
      expect(node).to.exist;
    })
 
-   it('should have a default value of null', () => {
+   it('should have completedWord default value of null', () => {
     expect(node.completedWord).to.equal(null);
    })
  })
